@@ -61,3 +61,6 @@ export LSCOLORS=DxGxcxdxCxegedabagacad
 
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+export JAVA_HOME=`/System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/java_home -v "1.8"`
+PATH=${JAVA_HOME}/bin:${PATH}
+
