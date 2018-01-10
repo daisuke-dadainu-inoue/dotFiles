@@ -37,11 +37,11 @@ setopt prompt_subst
 zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' stagedstr "%F{magenta}!"
 zstyle ':vcs_info:git:*' unstagedstr "%F{yellow}+"
-zstyle ':vcs_info:*' formats "%F{cyan}%c%u[%b]%f"
-zstyle ':vcs_info:*' actionformats '[%b|%a]'
+zstyle ':vcs_info:*' formats "%F{cyan}%c%u(%b)%f"
+zstyle ':vcs_info:*' actionformats '(%b|%a)'
 precmd() { vcs_info }
-PROMPT='[%n@%m]%F{yellow}$%f '
-RPROMPT='[%F{green}%~%f]${vcs_info_msg_0_}'
+PROMPT='[%n@%m]${vcs_info_msg_0_}%F{yellow}$%f '
+RPROMPT='[%F{green}%~%f]'
 
 # alias
 alias ls='ls -aF'
@@ -59,8 +59,5 @@ alias vv='vim ~/.vimrc'
 export CLICOLOR=1
 export LSCOLORS=DxGxcxdxCxegedabagacad
 
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-export JAVA_HOME=`/System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/java_home -v "1.8"`
-PATH=${JAVA_HOME}/bin:${PATH}
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
