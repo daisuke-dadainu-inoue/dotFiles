@@ -33,15 +33,22 @@ setopt no_beep
 
 # prompt
 autoload -Uz vcs_info
+autoload -U colors
+colors
+
 setopt prompt_subst
 zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' stagedstr "%F{magenta}!"
 zstyle ':vcs_info:git:*' unstagedstr "%F{yellow}+"
-zstyle ':vcs_info:*' formats "%F{cyan}%c%u(%b)%f"
+# zstyle ':vcs_info:*' formats "%F{cyan}(%b) %c%u%f"
+zstyle ':vcs_info:*' formats "(%b)"
 zstyle ':vcs_info:*' actionformats '(%b|%a)'
+
 precmd() { vcs_info }
-PROMPT='[%n@%m]${vcs_info_msg_0_}%F{yellow}$%f '
-RPROMPT='[%F{green}%~%f]'
+# PROMPT='[%n@%m]${vcs_info_msg_0_}%F{yellow}$%f '
+PROMPT='%F{magenta}%B%n%b%f@%F{blue}%m%f %F{yellow}${vcs_info_msg_0_}%f %# '
+# RPROMPT='[%F{green}%~%f]'
+RPROMPT='[%F{green}%d%f]'
 
 # alias
 alias ls='ls -aF'
@@ -64,6 +71,8 @@ case ${OSTYPE} in
         source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
         export JAVA_HOME=`/System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/java_home -v "1.8"`
         PATH=${JAVA_HOME}/bin:${PATH}
+        source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+        source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
         ;;
     linux*)
         source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
