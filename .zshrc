@@ -37,16 +37,17 @@ autoload -U colors
 colors
 
 setopt prompt_subst
+zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr "%F{magenta}!"
-zstyle ':vcs_info:git:*' unstagedstr "%F{yellow}+"
-# zstyle ':vcs_info:*' formats "%F{cyan}(%b) %c%u%f"
-zstyle ':vcs_info:*' formats "(%b)"
-zstyle ':vcs_info:*' actionformats '(%b|%a)'
+zstyle ':vcs_info:*' formats "⭠ %b%c%u"
+zstyle ':vcs_info:*' actionformats '⭠ %b%c%u ⮁ %a)'
+zstyle ':vcs_info:git:*' stagedstr " !"
+zstyle ':vcs_info:git:*' unstagedstr " +"
+# zstyle ':vcs_info:*' formats "%F{cyan}(%b)%c%u%f"
 
 precmd() { vcs_info }
 # PROMPT='[%n@%m]${vcs_info_msg_0_}%F{yellow}$%f '
-PROMPT='%F{magenta}%B%n%b%f@%F{blue}%m%f %F{yellow}${vcs_info_msg_0_}%f %# '
+PROMPT='%F{magenta}%B%n%b%f@%F{blue}%m%f %K{yellow}%F{black}${vcs_info_msg_0_}%f%k%F{yellow}⮀%f %# '
 # RPROMPT='[%F{green}%~%f]'
 RPROMPT='[%F{green}%d%f]'
 
