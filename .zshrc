@@ -39,17 +39,31 @@ colors
 setopt prompt_subst
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:*' formats "⭠ %b%c%u"
-zstyle ':vcs_info:*' actionformats '⭠ %b%c%u ⮁ %a)'
-zstyle ':vcs_info:git:*' stagedstr " !"
-zstyle ':vcs_info:git:*' unstagedstr " +"
-# zstyle ':vcs_info:*' formats "%F{cyan}(%b)%c%u%f"
+zstyle ':vcs_info:git:*' formats "⭠ %b%c%u"
+zstyle ':vcs_info:git:*' actionformats '⭠ %b%c%u ⮁ %a'
+zstyle ':vcs_info:git:*' stagedstr " staged"
+zstyle ':vcs_info:git:*' unstagedstr " unstaged"
 
 precmd() { vcs_info }
-# PROMPT='[%n@%m]${vcs_info_msg_0_}%F{yellow}$%f '
-PROMPT='%F{magenta}%B%n%b%f@%F{blue}%m%f %K{yellow}%F{black}${vcs_info_msg_0_}%f%k%F{yellow}⮀%f %# '
-# RPROMPT='[%F{green}%~%f]'
+PROMPT_HOST='%F{magenta}%B%n%b%f@%F{blue}%m%f'
+PROMPT='$PROMPT_HOST $(update_git_info) %# '
 RPROMPT='[%F{green}%d%f]'
+
+function update_git_info() {
+    LANG=en_US.UFT-8 vcs_info
+    _vcs_info=$vcs_info_msg_0_
+    BG_COLOR=green
+    FG_COLOR=black
+    if [ -n "$_vcs_info" ]; then
+        if [[ -n `echo $_vcs_info | grep -Ei "merge|unstaged|staged" 2> /dev/null` ]]; then
+            BG_COLOR=red
+            FG_COLOR=white
+        fi
+
+        echo "%{${bg[$BG_COLOR]}%}%{${fg[$FG_COLOR]}%}$_vcs_info%{${reset_color}%}%{${reset_color}%}%{${fg[$BG_COLOR]}%}⮀%{${reset_color}%}"
+    else
+    fi
+}
 
 # alias
 alias ls='ls -aF'
