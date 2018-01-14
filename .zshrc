@@ -59,7 +59,6 @@ function update_git_info() {
             BG_COLOR=red
             FG_COLOR=white
         fi
-
         echo "%{${bg[$BG_COLOR]}%}%{${fg[$FG_COLOR]}%}$_vcs_info%{${reset_color}%}%{${reset_color}%}%{${fg[$BG_COLOR]}%}⮀%{${reset_color}%}"
     else
     fi
@@ -88,9 +87,13 @@ case ${OSTYPE} in
         PATH=${JAVA_HOME}/bin:${PATH}
         source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
         source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+        brew update
+        brew upgrade
+        brew doctor
         ;;
     linux*)
         source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
         ;;
 esac
+
 
