@@ -66,7 +66,7 @@ git_info_pull() {
         local head_rev="$(git rev-parse HEAD)"
         local origin_rev="$(git rev-parse origin/$current_branch)"
         if [ "$head_rev" != "$origin_rev" ] && [ "$(git_info_push)" = "" ]; then
-            echo " Can Be Pushed"
+            echo " <- Can Be Pulled"
         fi
     fi
 }
@@ -76,7 +76,7 @@ git_info_push() {
         local current_branch="$(git rev-parse --abbrev-ref HEAD)"
         local push_count=$(git rev-list origin/"$current_branch".."$current_branch" 2>dev/null | wc -l)
         if [ "$push_count" -gt 0]; then
-            echo " Can Be Pushed($push_count)"
+            echo " -> Can Be Pushed($push_count)"
         fi
     fi
 }
