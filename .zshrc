@@ -49,6 +49,38 @@ PROMPT_HOST='%F{magenta}%B%n%b%f@%F{blue}%m%f'
 PROMPT='$PROMPT_HOST $(update_git_info) %# '
 RPROMPT='[%F{green}%d%f]'
 
+git_is_track_branch() {
+    if [ "$(git remote 2>/dev/null)" != "" ]; then
+        local target_tracking_branch="origin/$(git rev-parse --abbrev-ref HEAD)"
+        for tracking_branch in $(git branch -ar) ; do
+            if [ "$target_tracking_branch" = "$tracking_branch" ]; then
+                echo "true"
+            fi
+        done
+    fi
+}
+
+git_info_pull() {
+    if [ -n "$(git_is_track_branch)" ]; then
+        local current_bransh="$(git rev-parse --abbrev-ref HEAD)"
+        local head_rev="$(git rev-parse HEAD)"
+        local origin_rev="$(git rev-parse origin/$current_branch)"
+        if [ "$head_rev" != "$origin_rev" ] && [ "$(git_info_push)" = "" ]; then
+            echo " Can Be Pushed"
+        fi
+    fi
+}
+
+git_info_push() {
+    if [ -n "$(git_is_track_branch)" ]; then
+        local current_branch="$(git rev-parse --abbrev-ref HEAD)"
+        local push_count=$(git rev-list origin/"$current_branch".."$current_branch" 2>dev/null | wc -l)
+        if [ "$push_count" -gt 0]; then
+            echo " Can Be Pushed($push_count)"
+        fi
+    fi
+}
+
 function update_git_info() {
     LANG=en_US.UFT-8 vcs_info
     _vcs_info=$vcs_info_msg_0_
@@ -87,9 +119,6 @@ case ${OSTYPE} in
         PATH=${JAVA_HOME}/bin:${PATH}
         source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
         source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-        brew update
-        brew upgrade
-        brew doctor
         ;;
     linux*)
         source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
