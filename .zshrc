@@ -62,7 +62,7 @@ git_is_track_branch() {
 
 git_info_pull() {
     if [ -n "$(git_is_track_branch)" ]; then
-        local current_bransh="$(git rev-parse --abbrev-ref HEAD)"
+        local current_branch="$(git rev-parse --abbrev-ref HEAD)"
         local head_rev="$(git rev-parse HEAD)"
         local origin_rev="$(git rev-parse origin/$current_branch)"
         if [ "$head_rev" != "$origin_rev" ] && [ "$(git_info_push)" = "" ]; then
@@ -74,7 +74,7 @@ git_info_pull() {
 git_info_push() {
     if [ -n "$(git_is_track_branch)" ]; then
         local current_branch="$(git rev-parse --abbrev-ref HEAD)"
-        local push_count=$(git rev-list origin/"$current_branch".."$current_branch" 2>dev/null | wc -l)
+        local push_count=$(git rev-list origin/"$current_branch".."$current_branch" 2>/dev/null | wc -l)
         if [ "$push_count" -gt 0]; then
             echo " -> Can Be Pushed($push_count)"
         fi
@@ -87,11 +87,17 @@ function update_git_info() {
     BG_COLOR=green
     FG_COLOR=black
     if [ -n "$_vcs_info" ]; then
+        if [ -n "$_git_info_push" ] || [ -n "$_git_info_push" ]; then
+            BG_COLOR=yellow
+            FG_COLOR=black
+        fi
+
         if [[ -n `echo $_vcs_info | grep -Ei "merge|unstaged|staged" 2> /dev/null` ]]; then
             BG_COLOR=red
             FG_COLOR=white
         fi
-        echo "%{${bg[$BG_COLOR]}%}%{${fg[$FG_COLOR]}%}$_vcs_info%{${reset_color}%}%{${reset_color}%}%{${fg[$BG_COLOR]}%}⮀%{${reset_color}%}"
+
+        echo "%{${bg[$BG_COLOR]}%}%{${fg[$FG_COLOR]}%}$_vcs_info$_git_info_puh$_git_info_pull %{${reset_color}%}%{${reset_color}%}%{${fg[$BG_COLOR]}%}⮀%{${reset_color}%}"
     else
     fi
 }
