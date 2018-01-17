@@ -75,7 +75,11 @@ git_info_push() {
     if [ -n "$(git_is_track_branch)" ]; then
         local current_branch="$(git rev-parse --abbrev-ref HEAD)"
         local push_count=$(git rev-list origin/"$current_branch".."$current_branch" 2>/dev/null | wc -l)
+<<<<<<< HEAD
         if [ "$push_count" -gt 0 ]; then
+=======
+        if [ "$push_count" -gt 0]; then
+>>>>>>> 13993cac28ac27f5703693c784f9f89276e57c76
             echo " ⮁ Can Be Pushed($push_count)"
         fi
     fi
@@ -99,7 +103,12 @@ function update_git_info() {
             BG_COLOR=red
             FG_COLOR=white
         fi
+<<<<<<< HEAD
         echo "%{${bg[$BG_COLOR]}%}%{${fg[$FG_COLOR]}%}$_vcs_info$_git_info_push$_git_info_pull%{${reset_color}%}%{${reset_color}%}%{${fg[$BG_COLOR]}%}⮀%{${reset_color}%}"
+=======
+
+        echo "%{${bg[$BG_COLOR]}%}%{${fg[$FG_COLOR]}%}$_vcs_info$_git_info_push$_git_info_pull %{${reset_color}%}%{${reset_color}%}%{${fg[$BG_COLOR]}%}⮀%{${reset_color}%}"
+>>>>>>> 13993cac28ac27f5703693c784f9f89276e57c76
     else
     fi
 }
