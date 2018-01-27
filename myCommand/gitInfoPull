@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if [ -n "$(gitIsTrackBranch)" ]; then
+    current_branch="$(git rev-parse --abbrev-ref HEAD)"
+    head_rev="$(git rev-parse HEAD)"
+    origin_rev="$(git rev-parse origin/$current_branch)"
+    if [ "$head_rev" != "$origin_rev" ] && [ "$(gitInfoPush)" = "" ]; then
+        echo " ⮁ Can Be Pulled"
+    fi
+fi

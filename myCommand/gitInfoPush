@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if [ -n "$(gitIsTrackBranch)" ]; then
+    current_branch="$(git rev-parse --abbrev-ref HEAD)"
+    push_count=$(git rev-list origin/"$current_branch".."$current_branch" 2>/dev/null | wc -l | tr -d ' ')
+    if [ "$push_count" -gt 0 ]; then
+        echo " ⮁ Can Be Pushed($push_count)"
+    fi
+fi
