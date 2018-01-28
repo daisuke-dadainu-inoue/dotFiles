@@ -80,3 +80,7 @@ alias tree='tree -aF'
 alias vz='vim ~/.zsh/.zshrc'
 alias vv='vim ~/.vimrc'
 
+if [ ! -f ~/.zsh/.zshrc.zwc -o ~/.zsh/.zshrc -nt ~/.zsh/.zshrc.zwc ]; then
+    zcompile ~/.zsh/.zshrc
+fi
+
