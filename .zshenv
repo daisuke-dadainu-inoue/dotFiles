@@ -63,4 +63,9 @@ unsetopt list_types
 export FZF_DEFAUKT_COMMAND='rg --files --hidden --glob "!.git"'
 export FZF_DEFAUKT_OPTS='--height 40% --reverse --border'
 
+# nvm
+export NVM_DIR=$HOME/repos/nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 

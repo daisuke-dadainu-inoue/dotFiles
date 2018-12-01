@@ -26,8 +26,7 @@ PROMPT='$PROMPT_HOST${vcs_info_msg_0_}[%F{green}%d%f]
 # alias
 alias ls='ls -h --color=always'
 alias dir='ls --color=auto --format=vertical'
-alias ll='ls -l'
-alias la='ls -A'
+alias ll='ls -al'
 alias l='ls -CF'
 alias vi='vim'
 alias du='du -sh *'
