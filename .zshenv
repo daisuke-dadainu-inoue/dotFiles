@@ -1,3 +1,5 @@
+# path
+export PATH=~/bin:$PATH
 # fpath
 if [ -e ~/.zsh/zsh-completions ]; then
   fapath=(~/.zsh/zsh-completions $fpath)
@@ -17,6 +19,7 @@ export LC_ALL="${LANGUAGE}"
 export LC_CTYPE="${LANGUAGE}"
 
 # editor
+export VIM=~/repos/vim
 export EDITOR=vim
 export CVSEDITOR="${EDITOR}"
 export SVN_EDITOR="${EDITOR}"
