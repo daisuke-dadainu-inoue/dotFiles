@@ -9,6 +9,7 @@ limit coredumpsize 0
 # bindkey reset
 # キーバインドをリセット
 bindkey -d
+bindkey -e
 
 # zstyle
 # 部分補完の検索対象
@@ -30,6 +31,7 @@ PROMPT='$PROMPT_HOST${vcs_info_msg_0_}[%F{green}%d%f]
 %# '
 
 # alias
+alias reload='source ~/.zshrc'
 alias ll='ls -alG'
 alias vi='vim'
 alias tree='tree -aF'
@@ -39,4 +41,10 @@ alias vt='vim ~/.tmux.conf'
 alias ide='tmux new-session \; source-file ~/.tmux/session'
 alias ide-split='tmux source-file ~/.tmux/session'
 alias chrome='open -a /Applications/Google\ Chrome.app'
+alias myhelp='cat ~/bin/myhelp | less'
+alias brew='env PATH=${PATH/\/usr\/local\/var\/pyenv\/shims:/} brew'
+
+# pyenv
+eval "$(pyenv init -)"
+export PIPENV_VENV_IN_PROJECT=true
 

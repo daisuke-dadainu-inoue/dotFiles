@@ -1,6 +1,7 @@
 # path
 # ユーザーローカルbinフォルダをpathに含める
 export PATH=~/bin:$PATH
+export PATH="/usr/local/sbin:$PATH"
 
 # fpath
 # 補完機能ライブラリ
@@ -89,3 +90,12 @@ export NVM_DIR=$HOME/repos/nvm
 # nodebrew
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
+# python
+export PYENV_ROOT=/usr/local/var/pyenv
+# export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
+# openssl
+export DYLD_LIBRARY_PATH=/usr/local/opt/openssl/lib:$DYLD_LIBRARY_PATH
+
+# java
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home

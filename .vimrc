@@ -10,6 +10,9 @@ let g:asyncomplete_auto_popup = 1
 Plug 'w0rp/ale'
 call plug#end()
 
+" スワップファイルを作成しない
+set noswapfile
+
 " 番号
 set number
 " カーソル行アンダーライン表示
@@ -22,6 +25,8 @@ set listchars=tab:>-,space:-,trail:-,eol:$,extends:>,precedes:<
 highlight NonText    ctermfg=59
 " tab,spaceの色
 highlight SpecialKey ctermfg=59
+" backspace
+set backspace=indent,eol,start
 
 " タブを空白入力に変更
 set expandtab
