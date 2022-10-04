@@ -87,9 +87,6 @@ export NVM_DIR=$HOME/repos/nvm
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# nodebrew
-export PATH=$HOME/.nodebrew/current/bin:$PATH
-
 # python
 export PYENV_ROOT=/usr/local/var/pyenv
 # export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
@@ -98,4 +95,7 @@ export PYENV_ROOT=/usr/local/var/pyenv
 export DYLD_LIBRARY_PATH=/usr/local/opt/openssl/lib:$DYLD_LIBRARY_PATH
 
 # java
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home
+export JAVA_HOME=`/usr/libexec/java_home -v 11`
+
+
+
